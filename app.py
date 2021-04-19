@@ -14,7 +14,7 @@ def potencia(base,exponente):
         resultado=base**exponente
     except:
         abort(404)
-    return render_template("potencia.html",base=base,exponente=exponente,result$
+    return render_template("potencia.html",base=base,exponente=exponente,resultado=resultado)
 
 @app.route('/cuenta/<palabra>/<letra>')
 def cuentaletras(palabra,letra):
@@ -22,9 +22,23 @@ def cuentaletras(palabra,letra):
     if len(letra)>1:
          abort(404)
     
-    return render_template("cuentaletras.html",palabra=palabra,letra=letra,vece$
+    return render_template("cuentaletras.html",palabra=palabra,letra=letra,veces=veces)
 
-
+@app.route('/libros/<codigo>')
+def libros(codigo):
+    codigolibro=int(codigo) 
+    fichero=etree.parse("libros.xml")
+    autor=fichero.xpath("/biblioteca/libro[codigo=%d]/autor/text()"%codigolibro)
+    titulo=fichero.xpath("/biblioteca/libro[codigo=%d]/titulo/text()"%codigolibro)
+    if len(autor)==0:
+        abort(404)
+    for i in autor:
+        i=i
+    autor=i
+    for j in titulo:
+        j=j
+    titulo=j
+    return render_template("libros.html",autor=autor,titulo=titulo)
 
 app.run("0.0.0.0",8000,debug=True)
 
