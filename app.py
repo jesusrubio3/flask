@@ -41,5 +41,5 @@ def libros(codigo):
     titulo=j
     return render_template("libros.html",autor=autor,titulo=titulo)
 
-app.run("0.0.0.0",8000,debug=True)
+app.run("0.0.0.0",8000)
 
