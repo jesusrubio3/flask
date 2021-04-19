@@ -16,6 +16,14 @@ def potencia(base,exponente):
         abort(404)
     return render_template("potencia.html",base=base,exponente=exponente,result$
 
+@app.route('/cuenta/<palabra>/<letra>')
+def cuentaletras(palabra,letra):
+    veces=palabra.count(letra)
+    if len(letra)>1:
+         abort(404)
+    
+    return render_template("cuentaletras.html",palabra=palabra,letra=letra,vece$
+
 
 
 app.run("0.0.0.0",8000,debug=True)
